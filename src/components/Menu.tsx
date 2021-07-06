@@ -4,8 +4,10 @@ import arrow from '../assets/arrow.svg';
 import MenuItem from '../components/MenuItem'
 
 export interface MenuState {
-  title: string
-  path: string
+  menu: {
+    title: string
+    path: string
+  }
 }
 
 const Menu = () => {
@@ -24,7 +26,7 @@ const Menu = () => {
     }
   ]
 
-  const [menuList] = useState<MenuState[]>(menus)
+  const [menuList] = useState<MenuState['menu'][]>(menus)
 
   return (
     <div className="container">
@@ -42,8 +44,8 @@ const Menu = () => {
       <div className="content-container">
         <ul>
           {
-            menuList.map(menu => {
-              <MenuItem menu={menu} />
+            menuList.map((menu, key) => {
+              return <MenuItem key={key} menu={menu} />
             })
           }
         </ul>

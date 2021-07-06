@@ -1,10 +1,10 @@
 import React from "react";
 import { MenuState as Menu } from "./Menu";
 
-const MenuItem:React.FC<Menu> = ({...item}) => {
+const MenuItem:React.FC<Menu> = ({menu}) => {
   return (
     <li>
-      {item.title}
+      {menu.title}
     </li>
   )
 }
