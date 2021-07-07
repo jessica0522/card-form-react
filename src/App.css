@@ -44,8 +44,39 @@
  .content-container {
   padding: 1rem;
   height: 20rem;
+  position: relative;
 }
 
 .welcome {
   text-align: center;
+}
+
+.form {
+  position: absolute;
+  bottom: 2rem;
+  width: calc(100% - 2rem);
+}
+
+.w-100 {
+  width: calc(100% - 2rem);
+}
+
+input {
+  padding: 1rem;
+}
+
+.form-date {
+  margin: 1rem 0;
+  display: inline;
+  float: right;
+  text-align: right;
+}
+
+.w-small {
+  width: 20%;
+  margin-left: 1rem;
+}
+
+.submit {
+  width: 100%;
 }

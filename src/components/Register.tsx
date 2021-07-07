@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import Welcome from './Welcome'
+import Form from './Form'
 import hamburger from '../assets/hamburger.svg';
 
 export interface State {
@@ -32,6 +33,7 @@ const Register = () => {
 
       <div className="content-container">
         <Welcome user={user} />
+        <Form />
       </div>
     </div>
   )
