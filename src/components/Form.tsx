@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 
-interface FormState {
-  card_number?: number
-  cvc?: number
-  expiry?: any
+interface State {
+  form: {
+    card_number?: number
+    cvc?: number
+    expiry?: any
+  },
+  showErrorMessage: boolean
 }
 
 const Form = () => {
   //set form data state
-  const [formData, setFormDate] = useState<FormState>({
+  const [formData, setFormDate] = useState<State['form']>({
     card_number: undefined,
     cvc: undefined,
     expiry: undefined
   })
+
+  //set state for if display error message
+  const [showErrorMessage, setShowErrorMessage] = useState<State['showErrorMessage']>(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
     setFormDate({
@@ -33,6 +39,9 @@ const Form = () => {
       && (isNaN(parseInt(formData.expiry)) && !isNaN(Date.parse(formData.expiry)))  // check if it's a valid date
     ) {
       console.log('Form data:', formData)
+    }else {
+      //when form is incompleted or format invalid, display error message
+      setShowErrorMessage(true)
     }
   }
 
@@ -66,6 +75,13 @@ const Form = () => {
           placeholder="Expiry" 
         />
       </div>
+     { 
+        //display error message when validation not passed
+        showErrorMessage &&
+        <div>
+          <p className="errorMessage">Please complete the form or check your input format.</p>
+        </div>
+      }
       <input 
         className="submit" 
         type="submit" 
