@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 interface FormState {
-  card_number?: number,
+  card_number?: number
   cvc?: number
   expiry?: string
 }
@@ -14,11 +14,25 @@ const Form = () => {
     expiry: undefined
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
     setFormDate({
       ...formData,
       [e.target.name]: e.target.value
     })
+  }
+
+  const handleSubmit = (e: React.MouseEvent<HTMLInputElement>): void =>{
+    //validate form data before sumbit
+    e.preventDefault()
+    if(formData.card_number 
+      && !isNaN(formData.card_number)
+      && formData.cvc
+      && !isNaN(formData.cvc)
+      && formData.expiry
+    ) {
+      console.log('Form data:', formData)
+    }
+    
   }
 
   return (
@@ -30,7 +44,7 @@ const Form = () => {
           name="card_number"
           placeholder="Credit card number"
           onChange={(e)=> { handleChange(e) }} 
-          value={formData.card_number} 
+          value={formData.card_number || ''} 
         />
       </div>
       <div className="form-date">
@@ -38,7 +52,7 @@ const Form = () => {
           className="w-small" 
           type="number"
           name="cvc"
-          value={formData.cvc} 
+          value={formData.cvc || ''} 
           onChange={(e)=> { handleChange(e) }} 
           placeholder="CVC" 
         />
@@ -46,12 +60,17 @@ const Form = () => {
           className="w-small" 
           type="text" 
           name="expiry"
-          value={formData.expiry}
+          value={formData.expiry || ''}
           onChange={(e)=> { handleChange(e) }}  
           placeholder="Expiry" 
         />
       </div>
-      <input className="submit" type="submit" value="Submit" />
+      <input 
+        className="submit" 
+        type="submit" 
+        value="Submit" 
+        onClick={(e)=>{ handleSubmit(e) }}
+      />
     </div>
   )
 }
