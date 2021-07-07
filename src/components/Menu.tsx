@@ -11,6 +11,7 @@ export interface MenuState {
 }
 
 const Menu = () => {
+  //mockup menus
   const menus = [
     {
       title: 'Menu1',

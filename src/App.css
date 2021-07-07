@@ -40,3 +40,12 @@
  .tc {
    text-align: center;
  }
+
+ .content-container {
+  padding: 1rem;
+  height: 20rem;
+}
+
+.welcome {
+  text-align: center;
+}
