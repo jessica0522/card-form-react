@@ -3,7 +3,7 @@ import { MenuState as Menu } from "./Menu";
 
 const MenuItem:React.FC<Menu> = ({menu}) => {
   return (
-    <li>
+    <li data-testid="menuTitle">
       {menu.title}
     </li>
   )
