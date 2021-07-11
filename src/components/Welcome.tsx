@@ -3,7 +3,7 @@ import { State as StateUser} from './Register'
 
 const Welcome: React.FC<StateUser> = ({ user }) => {
   return (
-    <h3 className="welcome">Welcome {`${user.FirstName} ${user.LastName}`}</h3>
+    <h3 className="welcome" data-testid="welcomeText">Welcome {`${user.FirstName} ${user.LastName}`}</h3>
   )
 }
 
