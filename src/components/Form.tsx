@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import dayjs from 'dayjs'
 
 interface State {
   form: {
@@ -9,18 +10,21 @@ interface State {
   showErrorMessage: boolean
 }
 
+const initForm = {
+  card_number: undefined,
+  cvc: undefined,
+  expiry: undefined
+}
+
 const Form = () => {
   //set form data state
-  const [formData, setFormDate] = useState<State['form']>({
-    card_number: undefined,
-    cvc: undefined,
-    expiry: undefined
-  })
+  const [formData, setFormDate] = useState<State['form']>(initForm)
 
   //set state for if display error message
   const [showErrorMessage, setShowErrorMessage] = useState<State['showErrorMessage']>(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+    setShowErrorMessage(false)
     setFormDate({
       ...formData,
       [e.target.name]: e.target.value
@@ -36,19 +40,27 @@ const Form = () => {
       && formData.cvc
       && !isNaN(formData.cvc)
       && formData.expiry
-      && (isNaN(parseInt(formData.expiry)) && !isNaN(Date.parse(formData.expiry)))  // check if it's a valid date
+      && dayjs(formData.expiry).isValid() // check if it's a valid date
     ) {
-      console.log('Form data:', formData)
+      //valid form input, submit form
+      submitForm()  
     }else {
+      console.log('Form data:', formData, dayjs(formData.expiry).isValid())
       //when form is incompleted or format invalid, display error message
       setShowErrorMessage(true)
     }
+  }
+
+  const submitForm = () => {
+    console.log('Form data:', formData)
+    setFormDate(initForm)
   }
 
   return (
     <div className="form">
       <div className="form-number">
         <input 
+          data-testid="formCardNumber"
           className="w-100" 
           type="number" 
           name="card_number"
@@ -59,6 +71,7 @@ const Form = () => {
       </div>
       <div className="form-date">
         <input 
+          data-testid="formCVC"
           className="w-small" 
           type="number"
           name="cvc"
@@ -67,6 +80,7 @@ const Form = () => {
           placeholder="CVC" 
         />
         <input 
+          data-testid="formExpiry"
           className="w-small" 
           type="text" 
           name="expiry"
@@ -79,10 +93,11 @@ const Form = () => {
         //display error message when validation not passed
         showErrorMessage &&
         <div>
-          <p className="errorMessage">Please complete the form or check your input format.</p>
+          <p data-testid="errorMessage" className="errorMessage">Please complete the form or check your input format.</p>
         </div>
       }
       <input 
+        data-testid="formSubmit"
         className="submit" 
         type="submit" 
         value="Submit" 
