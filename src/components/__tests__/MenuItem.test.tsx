@@ -8,10 +8,10 @@ describe('MenuItem component', () => {
     path: '/menu1'
   }
 
-  it('should display user full name', () => {
+  it('should display correct menu title', () => {
     const { getByTestId } = render(<MenuItem menu={menu} />)
     const context = getByTestId('menuTitle')
-    expect(context).toHaveTextContent('Menu1')
+    expect(context.textContent).toBe('Menu1')
   })
 
   it('Snapshot match', () => {

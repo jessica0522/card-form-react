@@ -34,11 +34,11 @@ const Menu = () => {
       <div className="header">
         <div className="hamburger-container">
           <Link to="/">
-            <img className="hamburger" src={arrow} alt="arrow-icon" />
+            <img data-testid="backBtn" className="hamburger" src={arrow} alt="arrow-icon" />
           </Link>         
         </div>
         <div className="title-container">
-          <h3 className="tc">Menu</h3>
+          <h3 data-testid="pageTitle" className="tc">Menu</h3>
         </div>
       </div>
 
