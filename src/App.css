@@ -1,5 +1,5 @@
 .app {
-  background-color: lightcyan;
+  background-color: rgba(191, 219, 254, 0.5);
   height: 100vh;
   width: 100%;
   display: flex;
@@ -12,6 +12,7 @@
  }
  
  .container {
+   background-color: white;
    width: 25rem;
    margin: auto;
    border: 1px solid black;
@@ -90,6 +91,7 @@ input[type="number"] {
 
 .submit {
   width: 100%;
+  cursor: pointer;
 }
 
 .errorMessage {
