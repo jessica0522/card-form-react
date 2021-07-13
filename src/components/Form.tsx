@@ -45,7 +45,6 @@ const Form = () => {
       //valid form input, submit form
       submitForm()  
     }else {
-      console.log('Form data:', formData, dayjs(formData.expiry).isValid())
       //when form is incompleted or format invalid, display error message
       setShowErrorMessage(true)
     }
