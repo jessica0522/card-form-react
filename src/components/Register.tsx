@@ -38,7 +38,7 @@ const Register = () => {
       <div className="header">
         <div className="hamburger-container">
           <Link to="/menu">
-            <img className="hamburger" src={hamburger} alt="hamburger-icon" />
+            <img className="hamburger" data-testid="hamburger" src={hamburger} alt="hamburger-icon" />
           </Link>         
         </div>
         <div className="title-container">
