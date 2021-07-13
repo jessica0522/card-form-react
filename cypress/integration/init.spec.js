@@ -1,7 +1,7 @@
 
 describe('card form with react', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3001')
+    cy.visit('http://localhost:3000')
   })
 
   it('display register page by default', () => {
